@@ -11,12 +11,11 @@
 body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
 .container{max-width:1200px;margin:0 auto}
 header{text-align:center;padding:20px;margin-bottom:20px;background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(139,92,246,.06));border:1px solid var(--border);border-radius:12px}
-header h1{font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#ef4444,#f97316,#f59e0b,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header h1{font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#ef4444,#f97316,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 header .updated{color:var(--muted);font-size:13px;margin-top:6px}
-.overall-badge{display:inline-block;padding:6px 16px;border-radius:99px;font-weight:700;font-size:14px;margin-top:8px}
-.badge-critical{background:rgba(239,68,68,.15);color:var(--critical);border:1px solid rgba(239,68,68,.3)}
-.kpi-row{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.kpi{flex:1;min-width:140px;background:var(--card);padding:16px;border-radius:10px;border:1px solid var(--border);text-align:center}
+.overall-badge{display:inline-block;padding:6px 16px;border-radius:999px;font-weight:700;font-size:14px;margin-top:8px;background:rgba(239,68,68,.15);color:var(--critical);border:1px solid rgba(239,68,68,.3)}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.kpi{background:var(--card);padding:16px;border-radius:10px;border:1px solid var(--border);text-align:center}
 .kpi .label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
 .kpi .value{font-size:2rem;font-weight:800;margin:4px 0}
 .kpi .sub{font-size:12px;color:var(--muted)}
@@ -26,16 +25,16 @@ header .updated{color:var(--muted);font-size:13px;margin-top:6px}
 .chart-card h3{font-size:14px;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
 .risk-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden;border-left:4px solid var(--color,var(--blue))}
 .risk-card.critical{--color:var(--critical)}.risk-card.high{--color:var(--high)}.risk-card.medium{--color:var(--medium)}.risk-card.low{--color:var(--low)}
-.risk-header{padding:14px;background:#0d1527;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.risk-header .title{font-size:15px;font-weight:700;flex:1}
-.risk-level{padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;background:rgba(var(--risk-rgb,59,130,246),.15);color:var(--color)}
-.risk-region{font-size:11px;color:var(--muted);font-style:italic}
+.risk-header{padding:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.risk-header .title{font-size:14px;font-weight:700;flex:1}
+.risk-level{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(239,68,68,.1);color:var(--color)}
 .risk-body{padding:14px}
-.risk-body p{font-size:13px;margin-bottom:10px;color:var(--text)}
+.risk-body p{font-size:13px;margin-bottom:10px}
 .risk-body ul{list-style:none;padding:0}
-.risk-body ul li{padding:4px 0;font-size:12px;display:flex;align-items:flex-start;gap:6px}
-.risk-body ul li::before{content:"\2022";color:var(--color,var(--muted));font-weight:bold}
-.risk-trend{display:inline-block;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-top:8px;background:rgba(255,255,255,.05);color:var(--muted)}
+.risk-body ul li{padding:5px 0;font-size:12px;padding-left:16px;position:relative}
+.risk-body ul li::before{content:"\2022";position:absolute;left:0;color:var(--color);font-weight:700}
+.risk-trend{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:600;margin-top:8px;background:rgba(255,255,255,.05);color:var(--muted)}
+.deployment-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(16,185,129,.15);color:#10b981}
 footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px;padding:12px;border-top:1px solid var(--border)}
 </style>
 </head>
@@ -43,14 +42,15 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px;paddi
 <div class="container">
 <header>
 <h1>&#9888;&#65039; Geopolitical Risk Dashboard</h1>
-<div class="updated">Last Updated: 2026-04-06 17:20 UTC</div>
-<div class="overall-badge badge-critical">&#9888;&#65039; OVERALL RISK: CRITICAL</div>
+<div class="updated">Last Updated: 2026-04-07 07:47 UTC</div>
+<div class="overall-badge">&#9888;&#65039; OVERALL RISK: CRITICAL</div>
 </header>
 <div class="kpi-row">
 <div class="kpi"><div class="label">Total Tracked</div><div class="value" style="color:var(--blue)">5</div><div class="sub">Events &amp; Conflicts</div></div>
 <div class="kpi"><div class="label">Critical</div><div class="value" style="color:var(--critical)">1</div><div class="sub">Immediate threats</div></div>
 <div class="kpi"><div class="label">High</div><div class="value" style="color:var(--high)">2</div><div class="sub">Serious escalation</div></div>
 <div class="kpi"><div class="label">Medium</div><div class="value" style="color:var(--medium)">2</div><div class="sub">Stable/developing</div></div>
+<div class="kpi"><div class="label">Low</div><div class="value" style="color:var(--low)">0</div><div class="sub">Monitor only</div></div>
 </div>
 <div class="charts-row">
 <div class="chart-card">
@@ -64,91 +64,92 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px;paddi
 </div>
 <div class="risk-card critical">
 <div class="risk-header">
-<div class="title">US-Iran War - Day ~38 (since Feb 28, 2026): TRUMP'S APRIL 6 DEADLINE - Iran rejected US 15-point ceasefire plan calling it 'excess...</div>
+<div class="title">US-Iran War - Day 39 (since Feb 28, 2026): APRIL 7 8PM EST DEADLINE — Trump confirms Iran has until TONIGHT to reopen Hormuz. Trump called Iran's ceas...</div>
 <span class="risk-level">Critical</span>
 </div>
-<div class="risk-region">Middle East / Iran, Iraq, Gulf States, Kuwait, Lebanon</div>
+<div style="padding:0 14px;font-size:11px;color:var(--muted);font-style:italic">Middle East / Iran, Iraq, Gulf States, USA</div>
 <div class="risk-body">
-<p>US-Iran War - Day ~38 (since Feb 28, 2026): TRUMP'S APRIL 6 DEADLINE - Iran rejected US 15-point ceasefire plan calling it 'excessively demanding'. US-Iran ceasefire study underway as Trump's 'Hell' warning deadline Nearing. Iran DENIES talks despite Trump claims both sides studying framework. Kuwait airport hit by drone strike (fuel tank fire). US deploying 1,000 additional troops. Iran fires missiles at Israel AND Gulf states. Both F-15E crew members rescued (pilot Apr 3, WSO Apr 5 after 48hrs evading). A-10 also shot down during rescue — pilot recovered. 2 M/HC-130 + 1 MH-6 Little Bird destroyed to prevent tech capture. 13+ US service members killed since Feb 28.</p>
-<ul><li>DEADLINE DAY: Trump's 'Hell' ultimatum expires April 6 — MAJOR escalation if no deal</li>
-<li>US offered 15-point ceasefire plan — Iran called it 'excessively demanding', REJECTED</li>
-<li>Both US and Iran studying ceasefire framework despite contradictory public stances</li>
-<li>Iran DENIES ceasefire talks while Trump claims Iran's president wants ceasefire</li>
-<li>Kuwait airport fuel tank hit by drone — major fire outbreak</li>
+<p>US-Iran War - Day 39 (since Feb 28, 2026): APRIL 7 8PM EST DEADLINE — Trump confirms Iran has until TONIGHT to reopen Hormuz. Trump called Iran's ceasefire proposal 'significant' but 'NOT GOOD ENOUGH.' Iran submitted 10-point official response via Pakistan mediator: safe passage for Hormuz, reconstruction plan, sanctions lifting. Iran REJECTED 45-day ceasefire, demands permanent end to war. Trump refuses: 'The only one that's going to set a ceasefire is me.' Threatens ALL Iranian bridges & power plants will be 'decimated by 12 o'clock.' Iran-Israel trading attacks. Operation Epic Fury continues. 13+ US service members killed.</p>
+<ul><li>8 PM EST TONIGHT — Trump's deadline for Iran to reopen Hormuz Strait</li>
+<li>Trump: Iran proposal 'significant' but 'NOT GOOD ENOUGH'</li>
+<li>Iran 10-point response via Pakistan mediator: Hormuz safe passage, reconstruction, sanctions lift</li>
+<li>Iran REJECTED 45-day ceasefire — demands permanent war termination</li>
+<li>Trump refuses external ceasefire plan: 'Only I set ceasefire'</li>
 </ul>
-<span class="risk-trend">Trend: Critical Deadline Day — ceasefire uncertain</span>
+<span class="risk-trend">TREND: CRITICAL — 8PM EST deadline TODAY (April 7), major strikes imminent if no deal</span>
 </div>
 </div>
 <div class="risk-card high">
 <div class="risk-header">
-<div class="title">Russia-Ukraine War — Ukraine strikes Russian refineries near St Petersburg (visible smoke). Russia strikes Ukrainian market (5 kil...</div>
+<div class="title">Russia-Ukraine War — US envoys Witkoff & Kushner confirmed to visit Kyiv to reboot peace talks after Geneva negotiations ended ABRUPTLY. Zelenskiy rea...</div>
 <span class="risk-level">High</span>
 </div>
-<div class="risk-region">Eastern Europe / Ukraine, Russia</div>
+<div style="padding:0 14px;font-size:11px;color:var(--muted);font-style:italic">Eastern Europe / Ukraine, Russia</div>
 <div class="risk-body">
-<p>Russia-Ukraine War — Ukraine strikes Russian refineries near St Petersburg (visible smoke). Russia strikes Ukrainian market (5 killed, 19 injured). US envoys Witkoff & Kushner expected in Kyiv THIS MONTH to reboot peace talks. Zelenskyy warns Iran war could reduce Ukraine support. Putin REJECTED Orthodox Easter ceasefire. Russia claims Luhansk 'liberated'. ~1M Russian casualties, 250K-300K Ukrainian casualties.</p>
-<ul><li>Ukraine striking Russian refineries — smoke visible from St Petersburg</li>
-<li>Russia strikes Ukrainian market — 5 killed, 19 injured</li>
-<li>US envoys Witkoff and Kushner to visit Kyiv this month to REBOOT peace talks</li>
-<li>Zelenskyy: Iran war may reduce Western support for Ukraine</li>
+<p>Russia-Ukraine War — US envoys Witkoff & Kushner confirmed to visit Kyiv to reboot peace talks after Geneva negotiations ended ABRUPTLY. Zelenskiy reaffirms ceasefire proposal. Moscow says talks 'on pause.' Russia planning new offensive to exploit world's focus on Iran. Putin REJECTED Orthodox Easter ceasefire. Zelenskyy warns Iran war could reduce Western support for Ukraine.</p>
+<ul><li>US envoys Witkoff & Kushner to visit Kyiv — talks reboot imminent</li>
+<li>Geneva peace talks ended ABRUPTLY — currently 'on pause'</li>
+<li>Zelenskiy reaffirms ceasefire proposal to Russia (Apr 6)</li>
+<li>Russia planning new offensive exploiting distraction from Iran war</li>
 <li>Putin rejected Orthodox Easter ceasefire</li>
 </ul>
-<span class="risk-trend">Trend: Diplomacy thawing — US envoys returning to Kyiv</span>
+<span class="risk-trend">TREND: Negotiation window — US envoys deploying but Geneva stalled</span>
 </div>
 </div>
 <div class="risk-card high">
 <div class="risk-header">
-<div class="title">NATO Crisis — Trump threatens US withdrawal over Iran war fallout: 'Trump is furious at NATO over Iran.' NATO $6.1B budget in 2026...</div>
+<div class="title">NATO Crisis — Trump threatens US withdrawal over Iran war fallout. Major analysis: few signs actual withdrawal is progressing despite rhetoric. Consti...</div>
 <span class="risk-level">High</span>
 </div>
-<div class="risk-region">North America / Europe</div>
+<div style="padding:0 14px;font-size:11px;color:var(--muted);font-style:italic">North America / Europe</div>
 <div class="risk-body">
-<p>NATO Crisis — Trump threatens US withdrawal over Iran war fallout: 'Trump is furious at NATO over Iran.' NATO $6.1B budget in 2026, ~16% funded by US. US ambassador suggests Germany take NATO's top military role. Macron and Rutte messages exposed on Trump's Truth Social. Mark Rutte scheduled for White House meeting.</p>
-<ul><li>Trump 'furious' at NATO over Iran war — questioning US withdrawal entirely</li>
-<li>US ambassador floats Germany taking NATO's top military role</li>
-<li>Trump exposed Macron and Rutte's messages on Truth Social</li>
-<li>NATO $6.1B budget (2026) — 16% US-funded</li>
-<li>Rutte expected at White House meeting amid exit threats</li>
+<p>NATO Crisis — Trump threatens US withdrawal over Iran war fallout. Major analysis: few signs actual withdrawal is progressing despite rhetoric. Constitutional questions raised about whether Trump can unilaterally exit. US ambassador floated Germany taking NATO's top military role. Trump exposed Macron and Rutte's private messages on Truth Social. Mark Rutte expected at White House.</p>
+<ul><li>Trump threatens NATO withdrawal over Iran war</li>
+<li>Reuters: 'Few signs actual withdrawal is happening'</li>
+<li>Constitutional analysis: Can Trump unilaterally withdraw?</li>
+<li>US ambassador: Germany could take NATO's top military role</li>
+<li>Trump exposed Macron-Rutte private messages on Truth Social</li>
 </ul>
-<span class="risk-trend">Trend: Deteriorating — tensions peak over Iran conflict spillage</span>
+<span class="risk-trend">TREND: Threats escalate but structural withdrawal appears unlikely</span>
 </div>
 </div>
 <div class="risk-card medium">
 <div class="risk-header">
-<div class="title">China-Taiwan — US intelligence confirms China NOT planning 2027 invasion. Beijing pursuing 'peaceful unification conditions'. ADIZ...</div>
+<div class="title">China-Taiwan — Stable. ISW April 3 update: no new escalation. US intelligence confirms China NOT planning 2027 invasion. ADIZ incursions below 200 (fi...</div>
 <span class="risk-level">Medium</span>
 </div>
-<div class="risk-region">East Asia / Taiwan, China</div>
+<div style="padding:0 14px;font-size:11px;color:var(--muted);font-style:italic">East Asia / Taiwan, China</div>
 <div class="risk-body">
-<p>China-Taiwan — US intelligence confirms China NOT planning 2027 invasion. Beijing pursuing 'peaceful unification conditions'. ADIZ incursions decreased (below 200 first time under Lai). 4 US senators visited Taiwan (Mar 30). Taiwan: China remains primary threat.</p>
-<ul><li>US intelligence: NO 2027 invasion planned</li>
-<li>ADIZ incursions down — below 200, first time under Lai</li>
-<li>China pursuing peaceful unification per Beijing strategy</li>
-<li>4 US bipartisan senators visited Taiwan Mar 30</li>
+<p>China-Taiwan — Stable. ISW April 3 update: no new escalation. US intelligence confirms China NOT planning 2027 invasion. ADIZ incursions below 200 (first time under Lai). Taiwan opposition: 'World does not need a crisis over Taiwan.'</p>
+<ul><li>ISW April 3: No new escalation</li>
+<li>US intel: NO 2027 invasion planned</li>
+<li>ADIZ incursions below 200 — lowest under Lai</li>
+<li>China pursuing peaceful unification conditions</li>
+<li>Taiwan opposition: no crisis needed</li>
 </ul>
-<span class="risk-trend">Trend: De-escalating slightly</span>
+<span class="risk-trend">TREND: Stable — continued de-escalation</span>
 </div>
 </div>
 <div class="risk-card medium">
 <div class="risk-header">
-<div class="title">Sudan Civil War — RSF shifting operations southward. UNSC condemns RSF attacks in Kordofan, calls for end to war. Over 850 forced ...</div>
+<div class="title">Sudan Civil War — RSF shifting south toward South Sudan border. UNSC condemns attacks in Kordofan. 850+ families displaced. MSF warns of systematic vi...</div>
 <span class="risk-level">Medium</span>
 </div>
-<div class="risk-region">Africa / Sudan, South Sudan</div>
+<div style="padding:0 14px;font-size:11px;color:var(--muted);font-style:italic">Africa / Sudan, South Sudan</div>
 <div class="risk-body">
-<p>Sudan Civil War — RSF shifting operations southward. UNSC condemns RSF attacks in Kordofan, calls for end to war. Over 850 forced from homes. MSF warns of hallmark violence against women. South Sudan risks being drawn into conflict. Humanitarian crisis deepens.</p>
-<ul><li>UNSC condemns RSF attacks in Kordofan region</li>
-<li>RSF shifting operations southward toward South Sudan border</li>
-<li>Over 850 families displaced from RSF violence</li>
-<li>South Sudan at risk of being drawn into war</li>
+<p>Sudan Civil War — RSF shifting south toward South Sudan border. UNSC condemns attacks in Kordofan. 850+ families displaced. MSF warns of systematic violence against women. South Sudan at risk of spillover.</p>
+<ul><li>UNSC condemns RSF attacks in Kordofan</li>
+<li>RSF operations shifting toward South Sudan border</li>
+<li>850+ families displaced</li>
 <li>MSF warns of violence against women</li>
+<li>Spillover risk to South Sudan</li>
 </ul>
-<span class="risk-trend">Trend: Worsening — spreading to South Sudan</span>
+<span class="risk-trend">TREND: Worsening — spreading toward South Sudan</span>
 </div>
 </div>
 
 <footer>
-<p>Source: SearXNG local + Yahoo News + AP + Reuters + Foreign Policy | Auto-generated by Hermes Agent</p>
+<p>Source: SearXNG local + Reuters + CNBC + CNN + AP + PBS + TIME + Guardian | Auto-generated by Hermes Agent | <span class="deployment-badge">&#10003; Deployed 2026-04-07 07:47 UTC</span></p>
 </footer>
 </div>
 <script>
@@ -163,8 +164,8 @@ new Chart(document.getElementById('pieChart'), {
 new Chart(document.getElementById('barChart'), {
     type:'bar',
     data:{
-        labels:['Middle East','E. Europe','Asia-Pacific','NATO/Europe','Africa'],
-        datasets:[{data:[1, 1, 1, 1, 1],backgroundColor:['#ef4444','#f97316','#f59e0b','#3b82f6','#8b5cf6'],borderWidth:0,borderRadius:4}]
+        labels:['Middle East','E. Europe','NATO/Europe','Asia-Pacific','Africa'],
+        datasets:[{data:[1, 1, 1, 1, 1],backgroundColor:['#ef4444','#f97316','#3b82f6','#f59e0b','#8b5cf6'],borderWidth:0,borderRadius:4}]
     },
     options:{
         responsive:true,maintainAspectRatio:true,indexAxis:'y',
